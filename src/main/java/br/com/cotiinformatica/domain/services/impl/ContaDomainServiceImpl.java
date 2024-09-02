@@ -1,0 +1,45 @@
+package br.com.cotiinformatica.domain.services.impl;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import br.com.cotiinformatica.domain.models.dtos.ContaRequestDto;
+import br.com.cotiinformatica.domain.models.dtos.ContaResponseDto;
+import br.com.cotiinformatica.domain.services.interfaces.ContaDomainService;
+
+@Service
+public class ContaDomainServiceImpl implements ContaDomainService {
+
+	@Override
+	public ContaResponseDto inserir(ContaRequestDto request) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ContaResponseDto atualizar(UUID id, ContaRequestDto request) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ContaResponseDto excluir(UUID id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ContaResponseDto> consultar() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ContaResponseDto obterPorId(UUID id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
