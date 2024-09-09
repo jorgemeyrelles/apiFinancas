@@ -1,41 +1,51 @@
 package br.com.cotiinformatica.application.controllers;
 
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.cotiinformatica.domain.models.dtos.ContaRequestDto;
+import br.com.cotiinformatica.domain.models.dtos.ContaResponseDto;
+import br.com.cotiinformatica.domain.services.interfaces.ContaDomainService;
 
 @RestController
 @RequestMapping("/api/contas")
 public class ContaController {
 
+	@Autowired
+	private ContaDomainService contaDomainService;
+
 	@PostMapping
-	public void post() {
-		// TODO
+	public ContaResponseDto post(@RequestBody ContaRequestDto request) throws Exception {
+		return contaDomainService.inserir(request);
 	}
 
 	@PutMapping("{id}")
-	public void put(@PathVariable UUID id) {
-		// TODO
+	public ContaResponseDto put(@PathVariable UUID id, @RequestBody ContaRequestDto request) throws Exception {
+		return contaDomainService.atualizar(id, request);
 	}
 
 	@DeleteMapping("{id}")
-	public void delete(@PathVariable UUID id) {
-		// TODO
+	public ContaResponseDto delete(@PathVariable UUID id) throws Exception {
+		return contaDomainService.excluir(id);
 	}
 
 	@GetMapping
-	public void getAll() {
-		// TODO
+	public List<ContaResponseDto> getAll() throws Exception {
+		return contaDomainService.consultar();
 	}
 
 	@GetMapping("{id}")
-	public void getById(@PathVariable UUID id) {
-		// TODO
+	public ContaResponseDto getById(@PathVariable UUID id) throws Exception {
+		return contaDomainService.obterPorId(id);
 	}
 }

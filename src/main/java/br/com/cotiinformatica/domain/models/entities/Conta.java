@@ -1,5 +1,6 @@
 package br.com.cotiinformatica.domain.models.entities;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -9,6 +10,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -19,7 +21,7 @@ import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_conta")
+@Table(name = "conta")
 @Data
 public class Conta {
 	@Id
@@ -34,13 +36,13 @@ public class Conta {
 	private Date data;
 
 	@Column(name = "valor", precision = 10, scale = 2, nullable = false)
-	private Double valor;
+	private BigDecimal valor;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo", nullable = false)
 	private TipoConta tipo;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "conta_categoria",
 		joinColumns = @JoinColumn(name = "conta_id"),
 		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
